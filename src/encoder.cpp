@@ -5,6 +5,7 @@
 #include <Arduino.h>
 #include "config.h"
 #include "encoder.h"
+#include <util/atomic.h>
 
 static int posLft;
 static int posRgt;
@@ -62,12 +63,22 @@ void irpRgt() {
 }
 
 int enc::getPos(const Wheel wheel) {
+    int pos;
     switch (wheel) {
         case Wheel::LEFT:
-            return posLft;
+            // Read the position in an atomic block to avoid a potential
+            // misread if the interrupt coincides with this code running
+            ATOMIC_BLOCK(ATOMIC_RESTORESTATE) {
+                pos = posLft;
+            }
+            return pos;
         case Wheel::RIGHT:
-            return posRgt;
+            ATOMIC_BLOCK(ATOMIC_RESTORESTATE) {
+                pos = posRgt;
+            }
+            return pos;
         case Wheel::UNKNOWN:
-            return 0;
+            pos = 0;
+            return pos;
     }
 }
