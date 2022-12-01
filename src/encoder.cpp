@@ -7,8 +7,8 @@
 #include "encoder.h"
 #include <util/atomic.h>
 
-static int posLft;
-static int posRgt;
+static volatile int posLft;
+static volatile int posRgt;
 
 void irpLft();
 
