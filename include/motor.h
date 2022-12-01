@@ -10,7 +10,9 @@
 namespace mtr {
     void init();
 
-    void set(Wheel wheel, Direction dir, int val);
+    void turn(Wheel wheel, Direction dir);
+
+    void power(int val);
 }
 
 #endif //PID_MOTOR_H

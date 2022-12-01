@@ -7,34 +7,16 @@
 
 #include "wheel.h"
 
-class Pid {
-public:
-    void reset();
+namespace pid {
+    constexpr auto MIN_ERROR = 4;
 
-    bool ready() const;
+    constexpr auto MAX_TORQUE = 32767;
 
-    void start(int target, Wheel wheel);
+    bool ready();
+
+    void start(int target, bool inverse = false);
 
     void loop(bool debug = false);
-
-private:
-    // keep track of pid variables between calculating iterations
-    long prevT_ = 0l;    // for computing delta T
-    float ePrev_ = 0.0f;  // for computing delta error
-    float eIntg_ = 0.0f;  // estimates integral of error
-
-    // states
-    bool working_ = false;
-    int target_ = 0;
-    Wheel wheel_ = Wheel::UNKNOWN;
-
-    // PID constants
-    static constexpr auto kp = 1.0f;
-    static constexpr auto ki = 0.0f;
-    static constexpr auto kd = 0.025f;    // prevent overshoot
-
-    // accepted error
-    static constexpr auto MIN_ERROR = 1;
-};
+}
 
 #endif //PID_PID_H

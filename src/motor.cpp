@@ -7,34 +7,30 @@
 #include <Arduino.h>
 
 void mtr::init() {
-    pinMode(PWML, OUTPUT);
+    pinMode(POWR, OUTPUT);
     pinMode(INL_1, OUTPUT);
     pinMode(INL_2, OUTPUT);
-
-    pinMode(PWMR, OUTPUT);
     pinMode(INR_1, OUTPUT);
     pinMode(INR_2, OUTPUT);
+
+    turn(Wheel::LEFT, Direction::STATIC);
+    turn(Wheel::RIGHT, Direction::STATIC);
+    power(0);
 }
 
-void mtr::set(Wheel wheel, Direction dir, int val) {
-    uint8_t pwm;
+void mtr::turn(const Wheel wheel, const Direction dir) {
     uint8_t in1;
     uint8_t in2;
     switch (wheel) {
         case Wheel::LEFT:
-            pwm = PWML;
             in1 = INL_1;
             in2 = INL_2;
             break;
         case Wheel::RIGHT:
-            pwm = PWMR;
             in1 = INR_1;
             in2 = INR_2;
             break;
-        case Wheel::UNKNOWN:
-            return;
     }
-    analogWrite(pwm, val);
     switch (dir) {
         case Direction::FORWARD:
             digitalWrite(in1, HIGH);
@@ -49,4 +45,8 @@ void mtr::set(Wheel wheel, Direction dir, int val) {
             digitalWrite(in2, LOW);
             break;
     }
+}
+
+void mtr::power(const int val) {
+    analogWrite(POWR, val);
 }

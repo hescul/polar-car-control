@@ -31,19 +31,6 @@ void enc::reset() {
     posRgt = 0;
 }
 
-void enc::reset(const Wheel wheel) {
-    switch (wheel) {
-        case Wheel::LEFT:
-            posLft = 0;
-            break;
-        case Wheel::RIGHT:
-            posRgt = 0;
-            break;
-        case Wheel::UNKNOWN:
-            return;
-    }
-}
-
 void irpLft() {
     const int b = digitalRead(ENCL_B);
     if (b > 0) {
@@ -76,9 +63,6 @@ int enc::getPos(const Wheel wheel) {
             ATOMIC_BLOCK(ATOMIC_RESTORESTATE) {
                 pos = posRgt;
             }
-            return pos;
-        case Wheel::UNKNOWN:
-            pos = 0;
             return pos;
     }
 }

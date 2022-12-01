@@ -15,13 +15,11 @@ constexpr uint8_t ENCR_B = 5;
 
 constexpr long BLE_BR = 9600;
 constexpr uint8_t BLE_TX = 13;  // software serial
-constexpr uint8_t BLE_RX = 10;  // redundant, but put here for completeness
+constexpr uint8_t BLE_RX = 12;  // redundant, but put here for completeness
 
-constexpr uint8_t PWML = 11;    // PWM
+constexpr uint8_t POWR = 10;    // source of power
 constexpr uint8_t INL_1 = 8;
-constexpr uint8_t INL_2 = 12;
-
-constexpr uint8_t PWMR = 9;    // PWM
+constexpr uint8_t INL_2 = 9;
 constexpr uint8_t INR_1 = 6;
 constexpr uint8_t INR_2 = 7;
 

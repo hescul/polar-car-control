@@ -7,8 +7,7 @@
 
 enum class Wheel {
     LEFT,
-    RIGHT,
-    UNKNOWN
+    RIGHT
 };
 
 enum class Direction {

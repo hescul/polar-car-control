@@ -19,11 +19,6 @@ namespace enc {
     void reset();
 
     /**
-     * Resets the state of one encoder.
-     */
-    void reset(Wheel);
-
-    /**
      * Returns the current position value of the encoder.
      * @param encoder - the Encoder to be queried.
      */
