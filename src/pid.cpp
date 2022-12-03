@@ -42,8 +42,7 @@ void reset() {
 }
 
 int avgPos() {
-    const int avg = (abs(enc::getPos(Wheel::LEFT)) + abs(enc::getPos(Wheel::RIGHT))) / 2;
-    return (target_ < 0) ? -avg : avg;
+    return enc::getPos(Wheel::RIGHT);
 }
 
 bool pid::ready() {
