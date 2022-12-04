@@ -8,7 +8,7 @@
 
 // environmental constants
 constexpr float WHEEL_DIAMETER = 0.07f;   // in m
-constexpr float AXLE_RADIUS = 0.06f;   // in m
+constexpr float AXLE_RADIUS = 0.08f;   // in m
 constexpr int TARGET_PER_CYCLE = 280;     // turn the wheel full round with this target
 
 enum class Stage {
